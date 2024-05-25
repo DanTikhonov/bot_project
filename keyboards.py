@@ -2,14 +2,18 @@ from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 
 
 def gen_markup(texts, prefix):
+    """Генератор кнопок, с различными колбэками"""
     markup = []
     ls = list(texts.keys())
-    for num, text in enumerate(ls):
-        markup.append([InlineKeyboardButton(text=f"{text}", callback_data=f"{prefix}{num}")])
+    for les in ls:
+        markup.append([InlineKeyboardButton(text=f"{les}", callback_data=f"{prefix}{les}")])
     print(markup)
     return markup
 
 
+'''
+Кнопки функции "strat"
+'''
 btn_fill_less = InlineKeyboardButton(
     text='Заполнить расписание.',
     callback_data='fill_lessons'
@@ -32,7 +36,9 @@ keyboard_start = InlineKeyboardMarkup(
                      [btn_check_les],
                      [btn_edit_les]]
 )
-
+'''
+Кнопки для заполнения уроков по дням
+'''
 btd_fill_monday = InlineKeyboardButton(
     text='Понедельник',
     callback_data='fill_mon',
@@ -62,7 +68,9 @@ keyboard_fill = InlineKeyboardMarkup(
         [btd_fill_friday]
     ]
 )
-
+'''
+Кнопки для заполнения дз по дням
+'''
 btd_fill_monday = InlineKeyboardButton(
     text='Понедельник',
     callback_data='hw_mon',
@@ -92,6 +100,9 @@ keyboard_hw = InlineKeyboardMarkup(
         [btd_fill_friday]
     ]
 )
+'''
+кнопки для изменения дз
+'''
 btd_edit_monday = InlineKeyboardButton(
     text='Понедельник',
     callback_data='edit_mon',
@@ -122,6 +133,9 @@ keyboard_edit = InlineKeyboardMarkup(
         [btd_edit_friday],
     ]
 )
+'''
+кнопки для просмотра дз
+'''
 btd_ch_monday = InlineKeyboardButton(
     text='Понедельник',
     callback_data='ch_mon',
