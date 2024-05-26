@@ -1,4 +1,4 @@
-It is a bot that can help a student organize the recording and storage of homework assignments. Artificial intelligence is also implemented to solve simple problems
+It is a bot that can help a student organize the recording and storage of homework assignments. Artificial intelligence is also implemented to solve simple problems.
 To use this bot you need:
   1. Telegram Bot Token (from @BotFather)
   2. API-KEY (from: https://yandex.cloud/ru/docs/foundation-models/concepts/yandexgpt/)
