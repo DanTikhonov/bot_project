@@ -4,12 +4,13 @@ from aiogram.filters import Command
 from aiogram.types import Message, CallbackQuery
 from aiogram.fsm.state import State, StatesGroup
 from aiogram.fsm.context import FSMContext
-from keyboards import keyboard_fill, keyboard_start, gen_markup, keyboard_hw, keyboard_ch, keyboard_edit
+from keyboards import keyboard_start, gen_markup, gen_markup_by_days
 from aiogram.types import InlineKeyboardMarkup
 from lessons import Dairy
 from YAPI import YGPT
 
 dairy = Dairy()
+
 ygpt = YGPT(CATAL_IDEN, YANDEX_API)
 
 
@@ -68,7 +69,7 @@ async def start(message: Message):
 async def show_ch_menu(call: CallbackQuery):
     await call.message.answer(
         text='Выберите день для просмотра домашнего задания',
-        reply_markup=keyboard_ch
+        reply_markup=gen_markup_by_days('ch')
     )
 
 
@@ -76,7 +77,7 @@ async def show_ch_menu(call: CallbackQuery):
 async def show_edit_hw_menu(call: CallbackQuery):
     await call.message.answer(
         text='Выберете день недели.',
-        reply_markup=keyboard_edit
+        reply_markup=gen_markup_by_days('edit')
     )
 
 
@@ -84,7 +85,7 @@ async def show_edit_hw_menu(call: CallbackQuery):
 async def start_fill_les(callback: CallbackQuery):
     await callback.message.answer(
         text='Выберите день недели:',
-        reply_markup=keyboard_fill
+        reply_markup=gen_markup_by_days('fill')
     )
 
 
@@ -92,7 +93,7 @@ async def start_fill_les(callback: CallbackQuery):
 async def start_fill_hw(callback: CallbackQuery):
     await callback.message.answer(
         text='Выберите день недели:',
-        reply_markup=keyboard_hw
+        reply_markup=gen_markup_by_days('hw')
     )
 
 
@@ -189,7 +190,7 @@ async def input_lessons(message: Message, state: FSMContext):
 
 
 '''
-184 - 205 простейшие функции
+184 - 205 основные функции
 '''
 
 
@@ -197,7 +198,7 @@ async def input_lessons(message: Message, state: FSMContext):
 async def fill_lessons(message: Message):
     await message.answer(
         text='Выберите день недели:',
-        reply_markup=keyboard_fill
+        reply_markup=gen_markup_by_days('fill')
     )
 
 
@@ -205,7 +206,7 @@ async def fill_lessons(message: Message):
 async def fill_hw(message: Message):
     await message.answer(
         text='На кокой день заполнить д/з.',
-        reply_markup=keyboard_hw
+        reply_markup=gen_markup_by_days('hw')
     )
 
 
@@ -213,7 +214,7 @@ async def fill_hw(message: Message):
 async def c_h(message: Message):
     await message.answer(
         text='В кокой день посмотреть д/з.',
-        reply_markup=keyboard_ch
+        reply_markup=gen_markup_by_days('ch')
     )
 
 

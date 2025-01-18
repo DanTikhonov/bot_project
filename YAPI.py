@@ -1,5 +1,7 @@
 import json
 import requests
+
+
 class YGPT:
     def __init__(self, ind, api):
         self.ind = ind
@@ -9,6 +11,7 @@ class YGPT:
             "Content-Type": "application/json",
             "Authorization": f"Api-Key {api}"
         }
+
     def generatePrompt(self, text):
         prompt = {
             "modelUri": f"gpt://{self.ind}/yandexgpt-lite",
@@ -31,7 +34,6 @@ class YGPT:
         }
         return prompt
 
-
     def message_YGPT(self, text):
         prompt = self.generatePrompt(text)
         resp = requests.post(self.url, headers=self.headers, json=prompt)
@@ -41,5 +43,3 @@ class YGPT:
         a = json.loads(resp.text)
 
         return a['result']['alternatives'][0]['message']['text']
-
-
